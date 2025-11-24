@@ -10,8 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import Logo from "./Logo";
-import { ModeToggle } from "./ModeToggle";
+import { ModeToggle } from "../Theme/ModeToggle";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -50,7 +49,7 @@ export default function Navber() {
                   >
                     <path
                       d="M4 12L20 12"
-                      className="origin-center -translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-x-0 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[315deg]"
+                      className="origin-center -translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-x-0 group-aria-expanded:translate-y-0 "
                     />
                     <path
                       d="M4 12H20"
@@ -58,7 +57,7 @@ export default function Navber() {
                     />
                     <path
                       d="M4 12H20"
-                      className="origin-center translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[135deg]"
+                      className="origin-center translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-y-0 "
                     />
                   </svg>
                 </Button>
