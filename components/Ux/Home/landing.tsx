@@ -12,12 +12,12 @@ const Landing = () => {
             Search Here
           </Label>
 
-          <div className="relative w-full max-w-md">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+          <div className="relative w-full sm:[300px] md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto px-10">
+            <Search className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-500" />
             <Input
               id="search"
               placeholder="Search here..."
-              className="pl-10 bg-gray-100"
+              className="pl-10 w-full h-10 rounded-md"
             />
           </div>
         </form>
