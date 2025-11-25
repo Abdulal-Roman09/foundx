@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -11,6 +11,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ModeToggle } from "../Theme/ModeToggle";
+import { Button } from "@/components/ui/button";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [

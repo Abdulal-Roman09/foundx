@@ -4,12 +4,7 @@ import { getRecentPost } from "@/services/RecentsPost";
 import { IPost } from "@/types";
 
 const RecentPost = async () => {
-  // Fetch API data
   const response = await getRecentPost();
-
-  console.log("API Response:", response);
-
-  // Safely extract data array
   const posts: IPost[] = Array.isArray(response?.data) ? response.data : [];
 
   return (
