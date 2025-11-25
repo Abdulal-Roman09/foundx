@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { ReactNode } from "react";
 
-const layout = () => {
+const layout = ({ children }: { children: ReactNode }) => {
   return (
     <div>
-      profle layoutpage 
+      profile
+      {children}
     </div>
-  )
-}
+  );
+};
 
-export default layout
+export default layout;
