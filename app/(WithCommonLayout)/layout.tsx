@@ -1,4 +1,3 @@
-// app/(your-group)/layout.tsx
 import Navber from "@/components/Ux/Navber/Navber";
 import React from "react";
 

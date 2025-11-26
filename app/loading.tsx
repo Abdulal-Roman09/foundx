@@ -1,5 +1,3 @@
-
-
 const loading = () => {
   return (
     <div>
