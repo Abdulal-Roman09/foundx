@@ -9,9 +9,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ModeToggle } from "../Theme/ModeToggle";
 import { NavAvatarWithDropdown } from "./NavAvaterWithDropdown";
 import { Home, Menu } from "lucide-react";
+import { ModeToggle } from "./ModeToggle";
 
 // Navigation links array
 const navigationLinks = [
