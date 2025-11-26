@@ -18,6 +18,7 @@ const navigationLinks = [
   { href: "/", label: "Home", active: true },
   { href: "/about", label: "About" },
   { href: "/found-items", label: "Found Items" },
+  { href: "/login", label: "Login" },
 ];
 
 export default function Navbar() {
