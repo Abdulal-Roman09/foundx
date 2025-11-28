@@ -6,25 +6,24 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FXForm from "@/components/from/FXForm";
 import FxInput from "@/components/from/FxInput";
 import registerValidationSchema from "@/schemas/register.schema";
-import { useUserRegisteration } from "@/hooks/auth.hooks";
+import { useUserRegistration } from "@/hooks/auth.hooks";
+import { FieldValues } from "react-hook-form";
 
 const RegisterPage = () => {
-  const { mutate: handleUserRegister, isPending } = useUserRegisteration();
+  const { mutateAsync: handleUserRegisterAsync, isPending } = useUserRegistration();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: FieldValues) => {
     const userData = {
       ...data,
       profilePhoto:
         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
     };
-
-    console.log("Submitting user data:", userData);
-    handleUserRegister(userData);
+    try {
+      await handleUserRegisterAsync(userData);
+    } catch (err) {
+      // error handled by hook toasts
+    }
   };
-
-  if (isPending) {
-    console.log("loading");
-  }
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-muted/30 px-3">

@@ -9,12 +9,9 @@ import loginValidationSchema from "@/schemas/login.schema";
 import Link from "next/link";
 import { useUserLogin } from "@/hooks/auth.hooks";
 import { FieldValues } from "react-hook-form";
-import { LoadingSpnner } from "@/components/Ux/Loading/LoadingSpnner";
+import { LoadingSpinner } from "@/components/Ux/Loading/LoadingSpinner";
 
-type LoginFormData = {
-  email: string;
-  password: string;
-};
+// form types are inferred by Zod/resolver; use FieldValues for handler
 
 const LoginPage = () => {
   const { mutateAsync: handleUserLoginAsync, isPending } = useUserLogin();
@@ -29,6 +26,7 @@ const LoginPage = () => {
 
   return (
     <>
+      {isPending && <LoadingSpinner />}
       <div className="h-[calc(100vh-100px)] flex justify-center items-center bg-muted/30 px-3">
         <div className="w-full max-w-md bg-white dark:bg-neutral-900 shadow-xl p-8 rounded-2xl border">
           <h1 className="text-2xl font-semibold text-center mb-6">
@@ -59,7 +57,7 @@ const LoginPage = () => {
                 className="w-full mt-2 flex justify-center"
                 disabled={isPending}
               >
-                {isPending ? <LoadingSpnner /> : "Login"}
+                {isPending ? <LoadingSpinner /> : "Login"}
               </Button>
             </div>
           </FXForm>

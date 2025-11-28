@@ -4,7 +4,7 @@ import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import { loginUser } from "@/services/AuthServices";
 
-export const useUserRegisteration = () => {
+export const useUserRegistration = () => {
     const mutation = useMutation<any, Error, FieldValues>({
         mutationKey: ["USER_REGISTER"],
         mutationFn: async (userData) => await registerUser(userData),
@@ -18,7 +18,6 @@ export const useUserRegisteration = () => {
 
     return { ...mutation, isPending: (mutation as any).isLoading };
 };
-
 
 export const useUserLogin = () => {
     const mutation = useMutation<any, Error, FieldValues>({
