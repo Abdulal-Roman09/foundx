@@ -8,9 +8,11 @@ import FxInput from "@/components/from/FxInput";
 import registerValidationSchema from "@/schemas/register.schema";
 import { useUserRegistration } from "@/hooks/auth.hooks";
 import { FieldValues } from "react-hook-form";
+import { toast } from "sonner";
 
 const RegisterPage = () => {
-  const { mutateAsync: handleUserRegisterAsync, isPending } = useUserRegistration();
+  const { mutateAsync: handleUserRegisterAsync, isPending } =
+    useUserRegistration();
 
   const onSubmit = async (data: FieldValues) => {
     const userData = {
@@ -20,8 +22,8 @@ const RegisterPage = () => {
     };
     try {
       await handleUserRegisterAsync(userData);
-    } catch (err) {
-      // error handled by hook toasts
+    } catch (err: any) {
+      toast.error(err);
     }
   };
 

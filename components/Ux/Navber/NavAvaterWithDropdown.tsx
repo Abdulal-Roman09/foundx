@@ -8,7 +8,6 @@ import {
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
 import {
   User,
   FilePlus,
@@ -21,17 +20,29 @@ import { logout } from "@/services/AuthServices";
 import { useUser } from "@/context/user.porvider";
 
 export const NavAvatarWithDropdown = () => {
-  const { setIsLoading: userLoading } = useUser();
-  const hendelLogout = () => {
+  const { setUser, setIsLoading, user } = useUser();
+
+  const handleLogout = () => {
     logout();
-    userLoading(true);
+    setUser(null);
+    setIsLoading(true);
   };
+
+  const getInitials = (name?: string) =>
+    name
+      ? name
+          .split(" ")
+          .map((n) => n[0])
+          .join("")
+          .slice(0, 2)
+      : "NA";
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src={user?.profilePhoto} />
+          <AvatarFallback>{getInitials(user?.name)}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
 
@@ -86,9 +97,9 @@ export const NavAvatarWithDropdown = () => {
           </Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem>
           <button
-            onClick={hendelLogout}
+            onClick={handleLogout}
             className="flex items-center gap-2 text-red-600 w-full px-3 py-2 rounded hover:bg-red-100 dark:hover:bg-red-900"
           >
             <LogOut size={18} /> Logout
