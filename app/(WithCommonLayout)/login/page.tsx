@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import FXForm from "@/components/from/FXForm";
 import FxInput from "@/components/from/FxInput";
@@ -10,19 +10,37 @@ import Link from "next/link";
 import { useUserLogin } from "@/hooks/auth.hooks";
 import { FieldValues } from "react-hook-form";
 import { LoadingSpinner } from "@/components/Ux/Loading/LoadingSpinner";
-
-// form types are inferred by Zod/resolver; use FieldValues for handler
+import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 
 const LoginPage = () => {
-  const { mutateAsync: handleUserLoginAsync, isPending } = useUserLogin();
+  const serchParams = useSearchParams();
+  const router = useRouter();
+  const redirect = serchParams.get("redirect");
+
+  const {
+    mutateAsync: handleUserLoginAsync,
+    isPending,
+    isSuccess,
+  } = useUserLogin();
 
   const handleLogin = async (data: FieldValues) => {
     try {
       await handleUserLoginAsync(data);
-    } catch (err) {
-      // error handled by hook toast; optionally handle here
+    } catch (error: any) {
+      toast.error(error);
     }
   };
+
+  useEffect(() => {
+    if (!isPending && isSuccess) {
+      if (redirect) {
+        router.push(redirect);
+      } else {
+        router.push("/");
+      }
+    }
+  }, [isPending, isSuccess]);
 
   return (
     <>
