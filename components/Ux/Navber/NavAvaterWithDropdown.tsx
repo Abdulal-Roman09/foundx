@@ -21,6 +21,7 @@ import { useUser } from "@/context/user.porvider";
 
 export const NavAvatarWithDropdown = () => {
   const { setUser, setIsLoading, user } = useUser();
+  console.log(user);
 
   const handleLogout = () => {
     logout();
