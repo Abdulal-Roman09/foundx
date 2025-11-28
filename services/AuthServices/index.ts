@@ -12,6 +12,7 @@ interface DecodedToken {
   mobileNumber: string;
   role: string;
   status: string;
+  profilePhoto: string
 }
 
 export const registerUser = async (userData: FieldValues) => {
@@ -62,6 +63,7 @@ export const getCurrentUser = async () => {
       mobileNumber: decodedToken.mobileNumber,
       role: decodedToken.role,
       status: decodedToken.status,
+      profilePhoto: decodedToken.profilePhoto,
     };
   }
   return decodedToken

@@ -14,6 +14,8 @@ import {
 import { NavAvatarWithDropdown } from "./NavAvaterWithDropdown";
 import { Home, Menu } from "lucide-react";
 import { ModeToggle } from "./ModeToggle";
+import { useUser } from "@/context/user.porvider";
+import Link from "next/link";
 
 // Navigation links array
 const navigationLinks = [
@@ -24,6 +26,7 @@ const navigationLinks = [
 ];
 
 export default function Navbar() {
+  const { user } = useUser();
   return (
     <div className="container mx-auto">
       <header className="border-b px-4 md:px-6">
@@ -75,10 +78,21 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Right side */}
-          <div className="flex items-center gap-6">
+          {/* Right Side */}
+          <div className="flex items-center gap-4">
             <ModeToggle />
-            <NavAvatarWithDropdown />
+
+            {user?.email ? (
+              <NavAvatarWithDropdown />
+            ) : (
+              <Link
+                href="/login"
+                className="px-4 py-2 rounded-lg  bg-primary   text-primary-foreground  
+                hover:bg-primary/90   transition duration-200  shadow-sm  hover:shadow"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </header>

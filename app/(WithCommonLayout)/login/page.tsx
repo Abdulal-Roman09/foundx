@@ -12,10 +12,12 @@ import { FieldValues } from "react-hook-form";
 import { LoadingSpinner } from "@/components/Ux/Loading/LoadingSpinner";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import { useUser } from "@/context/user.porvider";
 
 const LoginPage = () => {
   const serchParams = useSearchParams();
   const router = useRouter();
+  const { setIsLoading: userLoading } = useUser();
   const redirect = serchParams.get("redirect");
 
   const {
@@ -27,6 +29,7 @@ const LoginPage = () => {
   const handleLogin = async (data: FieldValues) => {
     try {
       await handleUserLoginAsync(data);
+      userLoading(true);
     } catch (error: any) {
       toast.error(error);
     }

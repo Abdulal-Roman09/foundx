@@ -18,8 +18,14 @@ import {
   LogOut,
 } from "lucide-react";
 import { logout } from "@/services/AuthServices";
+import { useUser } from "@/context/user.porvider";
 
 export const NavAvatarWithDropdown = () => {
+  const { setIsLoading: userLoading } = useUser();
+  const hendelLogout = () => {
+    logout();
+    userLoading(true);
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -82,7 +88,7 @@ export const NavAvatarWithDropdown = () => {
 
         <DropdownMenuItem asChild>
           <button
-            onClick={() => logout()}
+            onClick={hendelLogout}
             className="flex items-center gap-2 text-red-600 w-full px-3 py-2 rounded hover:bg-red-100 dark:hover:bg-red-900"
           >
             <LogOut size={18} /> Logout

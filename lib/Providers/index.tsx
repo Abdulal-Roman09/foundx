@@ -4,6 +4,7 @@ import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
+import UserProvider from "@/context/user.porvider";
 
 const queryClient = new QueryClient();
 
@@ -20,8 +21,10 @@ const Providers = ({ children }: ProvidersProps) => {
         enableSystem
         disableTransitionOnChange
       >
-        <Toaster position="bottom-right" closeButton duration={3000} />
-        {children}
+        <UserProvider>
+          <Toaster position="bottom-right" closeButton duration={3000} />
+          {children}
+        </UserProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );
