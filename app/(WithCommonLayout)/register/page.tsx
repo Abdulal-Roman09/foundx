@@ -6,10 +6,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FXForm from "@/components/from/FXForm";
 import FxInput from "@/components/from/FxInput";
 import registerValidationSchema from "@/schemas/register.schema";
-import useUserRegistration from "@/hooks/auth.hooks";
+import { useUserRegisteration } from "@/hooks/auth.hooks";
 
 const RegisterPage = () => {
-  const { mutate: handleUserRegister, isPending } = useUserRegistration();
+  const { mutate: handleUserRegister, isPending } = useUserRegisteration();
 
   const onSubmit = (data: any) => {
     const userData = {

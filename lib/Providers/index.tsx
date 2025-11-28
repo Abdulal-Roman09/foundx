@@ -20,7 +20,7 @@ const Providers = ({ children }: ProvidersProps) => {
         enableSystem
         disableTransitionOnChange
       >
-        <Toaster position="top-right" richColors closeButton duration={4000} />
+        <Toaster position="bottom-right" closeButton duration={3000} />
         {children}
       </ThemeProvider>
     </QueryClientProvider>
