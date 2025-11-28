@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -6,6 +8,16 @@ import {
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+import {
+  User,
+  FilePlus,
+  BadgeCheck,
+  Info,
+  Settings,
+  LogOut,
+} from "lucide-react";
+import { logout } from "@/services/AuthServices";
 
 export const NavAvatarWithDropdown = () => {
   return (
@@ -18,49 +30,63 @@ export const NavAvatarWithDropdown = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="absolute w-56 bg-red-300 p-4 space-y-2 rounded-md shadow-md"
-        sideOffset={5}
-        align="center"
+        side="bottom"
+        align="end"
+        sideOffset={8}
+        className="w-56 max-h-80 overflow-auto bg-neutral-100 p-2 space-y-1 rounded-lg shadow-lg border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700"
       >
         <DropdownMenuItem asChild>
           <Link
             href="/profile"
-            className="block w-full px-3 py-2 rounded hover:bg-gray-300"
+            className="flex items-center gap-2 w-full px-3 py-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800"
           >
-            Profile
+            <User size={18} /> Profile
           </Link>
         </DropdownMenuItem>
+
         <DropdownMenuItem asChild>
           <Link
             href="/profile/create-post"
-            className="block w-full px-3 py-2 rounded hover:bg-gray-300"
+            className="flex items-center gap-2 w-full px-3 py-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800"
           >
-            Create Post
+            <FilePlus size={18} /> Create Post
           </Link>
         </DropdownMenuItem>
+
         <DropdownMenuItem asChild>
           <Link
-            href="/profile/"
-            className="block w-full px-3 py-2 rounded hover:bg-gray-300"
+            href="/profile"
+            className="flex items-center gap-2 w-full px-3 py-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800"
           >
-            Claim Requests
+            <BadgeCheck size={18} /> Claim Requests
           </Link>
         </DropdownMenuItem>
+
         <DropdownMenuItem asChild>
           <Link
             href="/profile/about"
-            className="block w-full px-3 py-2 rounded hover:bg-gray-300"
+            className="flex items-center gap-2 w-full px-3 py-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800"
           >
-            About
+            <Info size={18} /> About
           </Link>
         </DropdownMenuItem>
+
         <DropdownMenuItem asChild>
           <Link
             href="/profile/settings"
-            className="block w-full px-3 py-2 rounded hover:bg-gray-300"
+            className="flex items-center gap-2 w-full px-3 py-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800"
           >
-            Settings
+            <Settings size={18} /> Settings
           </Link>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem asChild>
+          <button
+            onClick={() => logout()}
+            className="flex items-center gap-2 text-red-600 w-full px-3 py-2 rounded hover:bg-red-100 dark:hover:bg-red-900"
+          >
+            <LogOut size={18} /> Logout
+          </button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
