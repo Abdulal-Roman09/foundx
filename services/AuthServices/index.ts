@@ -4,6 +4,7 @@ import axiosInstance from "@/lib/AxiosInstance/Index";
 import { cookies } from "next/headers";
 import { FieldValues } from "react-hook-form";
 import { jwtDecode } from "jwt-decode";
+import { toast } from "sonner";
 
 interface DecodedToken {
   _id: string;
@@ -41,8 +42,10 @@ export const loginUser = async (credentials: FieldValues) => {
 
     return data;
   } catch (err: any) {
-    throw new Error(err?.response?.data?.message || err.message || "Unknown error");
+    const msg = err?.response?.data?.message || err.message || "Unknown error";
+    throw new Error(msg);
   }
+
 };
 
 export const logout = async () => {
